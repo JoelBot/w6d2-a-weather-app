@@ -1,25 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Router, Route, Link, browserHistory } from 'react-router'
+import CMS from '../components/CMS'
+import Editor from '../components/Editor'
+import Page from '../components/Page'
 
-class Button extends React.Component {
-    constructor(props) {
-        super(props)
-        this.addCounter = this.addCounter.bind(this)
-        this.state = {
-            counter: 0
-        }
-    }
 
-    addCounter() {
-        var updatedCounter = this.state.counter
-        updatedCounter++
-        this.setState({
-            counter: updatedCounter
-        })
-    }
-    render () {
-        return <button type="button" className="btn btn-default btn-block" onClick={this.addCounter}>{this.state.counter}</button>
-    }
-}
 
-ReactDOM.render(<Button />, document.getElementById('react'))
+ReactDOM.render(
+
+    <Router history={browserHistory}>
+        <Route path="/" component={CMS}>
+            <Route path="page" component={Page} />
+            <Route path="editor" component={Editor} />
+        </Route>
+    </Router>
+    , document.getElementById('cms')
+)
