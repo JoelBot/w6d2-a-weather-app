@@ -56,17 +56,13 @@
 
 	var _reactRouter = __webpack_require__(172);
 
-	var _CMS = __webpack_require__(235);
+	var _Weather = __webpack_require__(235);
 
-	var _CMS2 = _interopRequireDefault(_CMS);
+	var _Weather2 = _interopRequireDefault(_Weather);
 
-	var _Editor = __webpack_require__(236);
+	var _Today = __webpack_require__(236);
 
-	var _Editor2 = _interopRequireDefault(_Editor);
-
-	var _Page = __webpack_require__(239);
-
-	var _Page2 = _interopRequireDefault(_Page);
+	var _Today2 = _interopRequireDefault(_Today);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -75,11 +71,10 @@
 	    { history: _reactRouter.browserHistory },
 	    _react2.default.createElement(
 	        _reactRouter.Route,
-	        { path: '/', component: _CMS2.default },
-	        _react2.default.createElement(_reactRouter.Route, { path: 'page', component: _Page2.default }),
-	        _react2.default.createElement(_reactRouter.Route, { path: 'editor', component: _Editor2.default })
+	        { path: '/', component: _Weather2.default },
+	        _react2.default.createElement(_reactRouter.Route, { path: 'today', component: _Today2.default })
 	    )
-	), document.getElementById('cms'));
+	), document.getElementById('weather'));
 
 /***/ },
 /* 1 */
@@ -27107,7 +27102,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -27128,70 +27123,57 @@
 
 	// Allows you to link to different routes realtime
 
-	var CMS = function (_React$Component) {
-	    _inherits(CMS, _React$Component);
+	// var temp = {
+	//     weatherData: updateWeatherData
+	// }
+	// var updateWeatherData
 
-	    function CMS(props) {
-	        _classCallCheck(this, CMS);
+	var Weather = function (_React$Component) {
+	  _inherits(Weather, _React$Component);
 
-	        return _possibleConstructorReturn(this, (CMS.__proto__ || Object.getPrototypeOf(CMS)).call(this, props));
+	  function Weather(props) {
+	    _classCallCheck(this, Weather);
+
+	    return _possibleConstructorReturn(this, (Weather.__proto__ || Object.getPrototypeOf(Weather)).call(this, props));
+	  }
+
+	  _createClass(Weather, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'locationDateTime' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-sm-12 text-center primaryTextColor' },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Indianapolis'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col-sm-12 text-center primaryTextColor' },
+	            'Date at time'
+	          )
+	        ),
+	        this.props.children
+	      );
 	    }
+	  }]);
 
-	    _createClass(CMS, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Content Management System'
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/' },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { type: 'button', className: 'btn btn-default' },
-	                        'Home'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/page' },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { type: 'button', className: 'btn btn-default' },
-	                        'Page'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    _reactRouter.Link,
-	                    { to: '/editor' },
-	                    _react2.default.createElement(
-	                        'button',
-	                        { type: 'button', className: 'btn btn-default' },
-	                        'Editor'
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'panel panel-default' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'panel-body' },
-	                        this.props.children
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return CMS;
+	  return Weather;
 	}(_react2.default.Component);
 
-	exports.default = CMS;
+	exports.default = Weather;
 
 /***/ },
 /* 236 */
@@ -27209,11 +27191,13 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _classAutoBind = __webpack_require__(237);
+	var _reactRouter = __webpack_require__(172);
+
+	var _sharedState = __webpack_require__(237);
+
+	var _classAutoBind = __webpack_require__(238);
 
 	var _classAutoBind2 = _interopRequireDefault(_classAutoBind);
-
-	var _sharedState = __webpack_require__(238);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27221,31 +27205,35 @@
 
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } // Allows you to link to different routes realtime
 
-	var Editor = function (_React$Component) {
-	    _inherits(Editor, _React$Component);
 
-	    function Editor(props) {
-	        _classCallCheck(this, Editor);
+	// var weatherData = {}
+	var Today = function (_React$Component) {
+	    _inherits(Today, _React$Component);
 
-	        // classAutoBind(this)
-	        var _this = _possibleConstructorReturn(this, (Editor.__proto__ || Object.getPrototypeOf(Editor)).call(this, props));
+	    function Today(props) {
+	        _classCallCheck(this, Today);
 
-	        _this.updatePageText = _this.updatePageText.bind(_this);
+	        // this.updateTemp = this.updateTemp.bind(this)
+	        // this.callAPI = this.callAPI.bind(this)
+	        var _this = _possibleConstructorReturn(this, (Today.__proto__ || Object.getPrototypeOf(Today)).call(this, props));
+
+	        (0, _classAutoBind2.default)(_this);
 
 	        _this.state = (0, _sharedState.sharedState)();
-	        // this.state = {
-	        //     pageText: ''
-	        // }
-	        // console.log('creating...')
+
 	        return _this;
 	    }
 
-	    _createClass(Editor, [{
+	    _createClass(Today, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            (0, _sharedState.attachSharedState)(this);
+	            console.log("mounted");
+
+	            console.log("callling API");
+	            callAPI();
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
@@ -27253,10 +27241,20 @@
 	            (0, _sharedState.detachSharedState)(this);
 	        }
 	    }, {
-	        key: 'updatePageText',
-	        value: function updatePageText(e) {
-	            (0, _sharedState.sharedState)({
-	                pageText: e.target.value
+	        key: 'callAPI',
+	        value: function callAPI() {
+	            fetch('http://api.openweathermap.org/data/2.5/weather?q=Indianapolis&units=imperial&appid=8efbef4cef85817b47d9fc8301e2f2de').then(function (response) {
+	                return response.json();
+	            }).then(function (response) {
+	                return updateTemp(response);
+	            });
+	        }
+	    }, {
+	        key: 'updateTemp',
+	        value: function updateTemp(temperature) {
+	            console.log(temperature);
+	            this.setState({
+	                temp: temperature.main.temp
 	            });
 	        }
 	    }, {
@@ -27267,67 +27265,25 @@
 	                null,
 	                _react2.default.createElement(
 	                    'h1',
-	                    null,
-	                    'Editor View'
+	                    { className: 'col-sm-12 text-center primaryTextColor giantTemp', onChange: this.updateTemp },
+	                    this.state.temp
 	                ),
-	                _react2.default.createElement('textarea', { className: 'form-control', onChange: this.updatePageText, value: this.state.pageText }),
 	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    this.state.pageText
+	                    'h1',
+	                    { className: 'col-sm-12 text-center secondaryTextColor' },
+	                    'Mostly Cloudy'
 	                )
 	            );
 	        }
 	    }]);
 
-	    return Editor;
+	    return Today;
 	}(_react2.default.Component);
 
-	exports.default = Editor;
+	exports.default = Today;
 
 /***/ },
 /* 237 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	// ES6 utility function written by Collin Schneider
-	function classAutoBind(context) {
-	  var _iteratorNormalCompletion = true;
-	  var _didIteratorError = false;
-	  var _iteratorError = undefined;
-
-	  try {
-	    for (var _iterator = Object.getOwnPropertyNames(Object.getPrototypeOf(context))[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	      var method = _step.value;
-
-	      if (method !== 'constructor') {
-	        context[method] = context[method].bind(context);
-	      }
-	    }
-	  } catch (err) {
-	    _didIteratorError = true;
-	    _iteratorError = err;
-	  } finally {
-	    try {
-	      if (!_iteratorNormalCompletion && _iterator.return) {
-	        _iterator.return();
-	      }
-	    } finally {
-	      if (_didIteratorError) {
-	        throw _iteratorError;
-	      }
-	    }
-	  }
-	}
-
-	exports.default = classAutoBind;
-
-/***/ },
-/* 238 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -27378,77 +27334,45 @@
 	exports.detachSharedState = detachSharedState;
 
 /***/ },
-/* 239 */
-/***/ function(module, exports, __webpack_require__) {
+/* 238 */
+/***/ function(module, exports) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
+	// ES6 utility function written by Collin Schneider
+	function classAutoBind(context) {
+	  var _iteratorNormalCompletion = true;
+	  var _didIteratorError = false;
+	  var _iteratorError = undefined;
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	  try {
+	    for (var _iterator = Object.getOwnPropertyNames(Object.getPrototypeOf(context))[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+	      var method = _step.value;
 
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _sharedState = __webpack_require__(238);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var Page = function (_React$Component) {
-	    _inherits(Page, _React$Component);
-
-	    function Page(props) {
-	        _classCallCheck(this, Page);
-
-	        var _this = _possibleConstructorReturn(this, (Page.__proto__ || Object.getPrototypeOf(Page)).call(this, props));
-
-	        _this.state = (0, _sharedState.sharedState)();
-	        return _this;
+	      if (method !== 'constructor') {
+	        context[method] = context[method].bind(context);
+	      }
 	    }
+	  } catch (err) {
+	    _didIteratorError = true;
+	    _iteratorError = err;
+	  } finally {
+	    try {
+	      if (!_iteratorNormalCompletion && _iterator.return) {
+	        _iterator.return();
+	      }
+	    } finally {
+	      if (_didIteratorError) {
+	        throw _iteratorError;
+	      }
+	    }
+	  }
+	}
 
-	    _createClass(Page, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            (0, _sharedState.attachSharedState)(this);
-	        }
-	    }, {
-	        key: 'componentWillUnmount',
-	        value: function componentWillUnmount() {
-	            (0, _sharedState.detachSharedState)(this);
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'Page View'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    this.state.pageText
-	                )
-	            );
-	        }
-	    }]);
-
-	    return Page;
-	}(_react2.default.Component);
-
-	exports.default = Page;
+	exports.default = classAutoBind;
 
 /***/ }
 /******/ ]);

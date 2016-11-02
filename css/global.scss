@@ -1,0 +1,30 @@
+$color1: #BCF8FF;
+$color2: #0197BC;
+$textColor1: #2287A4;
+$textColor2: #BBF7FF;
+
+* {
+    box-sizing: border-box;
+}
+img {
+    width: 100%;
+}
+body {
+    height: 100%;
+    background: linear-gradient($color1, $color2) no-repeat fixed center center;
+    // background-size: 100%;
+    // background-repeat: no-repeat;
+}
+.primaryTextColor {
+    color: $textColor1;
+}
+.secondaryTextColor {
+    color: $textColor2
+}
+
+.locationDateTime {
+    padding-bottom: 7vh;
+}
+.giantTemp {
+    font-size: 25vh;
+}

@@ -1,6 +1,7 @@
 module.exports = {
   entry: {
     global: './js/global.js',
+    // globalcms: './js/globalcms.js'
   },
   output: {
     path: './js/',
