@@ -17,7 +17,7 @@ class Weather extends React.Component {
                 <div className="col-sm-12 text-center primaryTextColor"><h3>Indianapolis</h3></div>
               </div>
               <div className="row">
-                <div className="col-sm-12 text-center primaryTextColor">Date at time</div>
+                <div className="col-sm-12 text-center primaryTextColor">November 2nd at 9:19am</div>
               </div>
               {this.props.children}
             </div>

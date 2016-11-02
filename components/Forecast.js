@@ -1,17 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router' // Allows you to link to different routes realtime
 import { sharedState, attachSharedState, detachSharedState } from 'react-helpers/dist/sharedState'
+import moment from 'moment'
 // import classAutoBind from 'react-helpers/dist/classAutoBind'
 
 // var weatherData = {}
-class Today extends React.Component {
+class Forecast extends React.Component {
     constructor(props) {
         super(props)
-        this.updateTemp = this.updateTemp.bind(this)
+        this.updateForecast = this.updateForecast.bind(this)
         // this.callAPI = this.callAPI.bind(this)
         // classAutoBind(this)
         this.state = {
-            temp: '--',
+            days: [],
             condition: '--'
         }
 
@@ -25,7 +26,7 @@ class Today extends React.Component {
 
         console.log("callling API")
         // callAPI()
-        fetch('http://api.openweathermap.org/data/2.5/weather?q=Indianapolis&units=imperial&appid=8efbef4cef85817b47d9fc8301e2f2de')
+        fetch('http://api.openweathermap.org/data/2.5/forecast?q=Indianapolis&units=imperial&appid=8efbef4cef85817b47d9fc8301e2f2de')
         .then(response => response.json())
         // .then(response => updateTemp(response)
         .then(this.updateTemp)
@@ -40,15 +41,16 @@ class Today extends React.Component {
     //     .then(response => response.json())
     //     .then(response => updateTemp(response))
     // }
-    updateTemp(temperature) {
+    updateForecast(temperature) {
         console.log(temperature)
         this.setState({
-            temp: Math.round(temperature.main.temp),
+            days: temperature.main.temp,
             condition: temperature.weather[0].description
         })
     }
 
     render() {
+
         return <div>
         <h1 className="col-sm-12 text-center primaryTextColor giantTemp">{this.state.temp}</h1>
         <h1 className="col-sm-12 text-center secondaryTextColor">{this.state.condition}</h1>
@@ -56,4 +58,4 @@ class Today extends React.Component {
     }
 }
 
-export default Today
+export default Forecast
